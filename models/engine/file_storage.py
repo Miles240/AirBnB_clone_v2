@@ -18,7 +18,6 @@ class FileStorage:
             class_dict = {}
             for k, v in self.__objects.items():
                 if isinstance(v, cls):
-                    # Create a dictionary without the 'updated_at' key/value pair
                     class_dict[k] = v
             return class_dict
         return self.__objects
