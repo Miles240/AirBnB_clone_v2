@@ -5,19 +5,48 @@ import os
 
 # Add the parent directory of 'models' to the Python path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-from models import storage
-from models.base_model import BaseModel
+from models.engine.file_storage import FileStorage
+from models.state import State
 
-all_objs = storage.all()
-print("-- Reloaded objects --")
-# print(all_objs)
-for obj_id in all_objs.keys():
-    obj = all_objs[obj_id]
-    print(obj)
+fs = FileStorage()
 
-print("-- Create a new object --")
-my_model = BaseModel()
-my_model.name = "My_First_Model"
-my_model.my_number = 89
-my_model.save()
-print(my_model)
+# All States
+all_states = fs.all(State)
+print("All States: {}".format(len(all_states.keys())))
+for state_key in all_states.keys():
+    print(all_states[state_key])
+
+# Create a new State
+new_state = State()
+new_state.name = "California"
+fs.new(new_state)
+fs.save()
+print("New State: {}".format(new_state))
+
+# All States
+all_states = fs.all(State)
+print("All States: {}".format(len(all_states.keys())))
+for state_key in all_states.keys():
+    print(all_states[state_key])
+
+# Create another State
+another_state = State()
+another_state.name = "Nevada"
+fs.new(another_state)
+fs.save()
+print("Another State: {}".format(another_state))
+
+# All States
+all_states = fs.all(State)
+print("All States: {}".format(len(all_states.keys())))
+for state_key in all_states.keys():
+    print(all_states[state_key])
+
+# Delete the new State
+fs.delete(new_state)
+
+# All States
+all_states = fs.all(State)
+print("All States: {}".format(len(all_states.keys())))
+for state_key in all_states.keys():
+    print(all_states[state_key])
