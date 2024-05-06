@@ -46,7 +46,7 @@ class DBStorage:
                 cls = eval(cls)
             query = self.__session.query(cls).all()
             for obj in query:
-                key = f"{type(self).__name__}.{obj.id}"
+                key = f"{type(obj).__name__}.{obj.id}"
                 dic[key] = obj
         else:
             cls_list = [Amenity, City, Place, Review, State, User]
@@ -54,7 +54,7 @@ class DBStorage:
             for clas in cls_list:
                 query = self.__session.query(clas).all()
                 for obj in query:
-                    key = f"{type(self).__name__}.{obj.id}"
+                    key = f"{type(obj).__name__}.{obj.id}"
                     dic[key] = obj
         return dic
 
@@ -73,9 +73,8 @@ class DBStorage:
 
     def reload(self):
         """create all tables in the database"""
-        Base.metadata.drop_all(bind=self.__engine)
+        # Base.metadata.drop_all(bind=self.__engine)
         Base.metadata.create_all(bind=self.__engine)
-
         session_fac = sessionmaker(bind=self.__engine, expire_on_commit=False)
         Session = scoped_session(session_fac)
         self.__session = Session()
