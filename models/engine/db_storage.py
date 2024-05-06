@@ -48,16 +48,15 @@ class DBStorage:
             for obj in query:
                 key = f"{type(self).__name__}.{obj.id}"
                 dic[key] = obj
-            return dic
         else:
             cls_list = [Amenity, City, Place, Review, State, User]
 
-            for clax in cls_list:
-                query = self.__session.query(clax).all()
+            for clas in cls_list:
+                query = self.__session.query(clas).all()
                 for obj in query:
                     key = f"{type(self).__name__}.{obj.id}"
                     dic[key] = obj
-            return dic
+        return dic
 
     def new(self, obj):
         """adds the object to the current database session"""
