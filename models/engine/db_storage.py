@@ -4,9 +4,9 @@
 
 import os
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import scoped_session
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy import create_engine
+from models.base_model import Base
 from models.amenity import Amenity
 from models.city import City
 from models.place import Place
