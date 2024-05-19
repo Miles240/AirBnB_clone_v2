@@ -8,20 +8,20 @@ app = Flask(__name__)
 
 @app.route("/", strict_slashes=False)
 def hame():
-    """Home Route"""
+    """Route to Home"""
     return f"Hello HBNB!"
 
 
 @app.route("/hbnb", strict_slashes=False)
 def hbnb():
-    """HBNB route"""
+    """route to HBNB"""
     return f"HBNB"
 
 
-@app.route("/c/<text>")
+@app.route("/c/<text>", strict_slashes=False)
 def c(text):
-	"""route to c"""
-	return f"C {text}"
+    """route to c"""
+    return f"C {text}"
 
 
 if __name__ == "__main__":
