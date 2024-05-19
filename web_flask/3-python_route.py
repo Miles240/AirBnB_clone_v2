@@ -18,10 +18,13 @@ def hbnb():
     return f"HBNB"
 
 
-@app.route("/c/<text>", strict_slashes=False)
-def c(text):
-    """route to c"""
-    return f"C {text.replace('_', ' ')}"
+@app.route("/python/", strict_slashes=False)
+@app.route("/python/<text>", strict_slashes=False)
+def text(text="is cool"):
+    """route to text"""
+    if text is None:
+        text = request.args.get("text", "default")
+    return f"Python {text.replace('_', ' ')}"
 
 
 @app.route("/python/<text>", strict_slashes=False)
