@@ -49,8 +49,7 @@ def num_odd_even(n):
     """route to num_odd_even"""
     if n % 2 == 0:
         return render_template("6-number_odd_or_even.html", number=n, ans="even")
-    else:
-        return render_template("6-number_odd_or_even.html", number=n, ans="odd")
+    return render_template("6-number_odd_or_even.html", number=n, ans="odd")
 
 
 if __name__ == "__main__":
